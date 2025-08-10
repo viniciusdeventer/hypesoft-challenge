@@ -1,13 +1,25 @@
-﻿namespace Hypesoft.Domain.Entities;
+﻿using System.ComponentModel.DataAnnotations;
+using MongoDB.Bson;
+using MongoDB.Bson.Serialization.Attributes;
+
+namespace Hypesoft.Domain.Entities;
 
 public class Product
 {
-    public Guid IdProduct { get; private set; } = Guid.NewGuid();
-    public string Name { get; private set; }
-    public string Description { get; private set; }
-    public decimal Price { get; private set; }
-    public string IdCategory { get; private set; }
-    public int StockQuantity { get; private set; }
+    [BsonId]
+    [BsonRepresentation(BsonType.ObjectId)]
+    public string? IdProduct { get; set; }
+    [Required]
+    public string Name { get; set; }
+    [Required]
+    public string Description { get; set; }
+    [Required]
+    public decimal Price { get; set; }
+    [Required]
+    public string IdCategory { get; set; }
+    public int StockQuantity { get; set; }
+
+    public Product() { }
 
     public Product(string name, string description, decimal price, string idCategory, int stockQuantity)
     {
@@ -31,4 +43,3 @@ public class Product
         StockQuantity = quantity;
     }
 }
-

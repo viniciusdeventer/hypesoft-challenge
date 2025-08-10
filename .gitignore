@@ -1,0 +1,44 @@
+# Visual Studio
+.vs/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+# Visual Studio Code
+.vscode/
+
+# Pastas de build e cache
+**/bin/
+**/obj/
+**/Log/
+*.log
+
+# Arquivos temporários do compilador
+*.tmp
+*.temp
+*.dbmdl
+*.pdb
+
+# Arquivos NuGet
+*.nupkg
+**/packages/*
+!**/packages/build/
+*.snupkg
+
+# Configuração local
+*.local
+*.launchSettings.json
+
+# Resultados de testes
+TestResult*/
+*.trx
+*.coverage
+*.coveragexml
+
+# Publicação e distribuição
+publish/
+dist/
+
+# Docker
+*.pid

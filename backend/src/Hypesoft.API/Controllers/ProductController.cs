@@ -9,7 +9,7 @@ namespace Hypesoft.API.Controllers;
 public class ProductController : ControllerBase
 {
     private readonly IProductRepository _repository;
-
+     
     public ProductController(IProductRepository repository)
     {
         _repository = repository;
@@ -22,8 +22,8 @@ public class ProductController : ControllerBase
         return Ok(products);
     }
 
-    [HttpGet("{id:guid}")]
-    public async Task<IActionResult> GetById(Guid id)
+    [HttpGet("{id}")]
+    public async Task<IActionResult> GetById(string id)
     {
         var product = await _repository.GetByIdAsync(id);
         if (product == null)
@@ -38,26 +38,25 @@ public class ProductController : ControllerBase
         return CreatedAtAction(nameof(GetById), new { id = product.IdProduct }, product);
     }
 
-    //[HttpPut("{id:guid}")]
-    //public async Task<IActionResult> Update(Guid id, [FromBody] Product updatedProduct)
-    //{
-    //    var product = await _repository.GetByIdAsync(id);
-    //    if (product == null)
-    //        return NotFound();
+    [HttpPut("{id}")]
+    public async Task<IActionResult> Update(string id, [FromBody] Product updatedProduct)
+    {
+       var product = await _repository.GetByIdAsync(id);
+       if (product == null)
+           return NotFound();
 
-    //    // Atualizar os campos manualmente para evitar alterar o IdProduct
-    //    product.Name = updatedProduct.Name;
-    //    product.Description = updatedProduct.Description;
-    //    product.Price = updatedProduct.Price;
-    //    product.IdCategory = updatedProduct.IdCategory;
-    //    product.StockQuantity = updatedProduct.StockQuantity;
+       product.Name = updatedProduct.Name;
+       product.Description = updatedProduct.Description;
+       product.Price = updatedProduct.Price;
+       product.IdCategory = updatedProduct.IdCategory;
+       product.StockQuantity = updatedProduct.StockQuantity;
 
-    //    await _repository.UpdateAsync(product);
-    //    return NoContent();
-    //}
+       await _repository.UpdateAsync(product);
+       return NoContent();
+    }
 
-    [HttpDelete("{id:guid}")]
-    public async Task<IActionResult> Delete(Guid id)
+    [HttpDelete("{id}")]
+    public async Task<IActionResult> Delete(string id)
     {
         var product = await _repository.GetByIdAsync(id);
         if (product == null)

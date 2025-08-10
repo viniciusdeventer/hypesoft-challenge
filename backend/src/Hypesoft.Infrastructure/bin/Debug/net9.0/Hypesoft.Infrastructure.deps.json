@@ -145,6 +145,9 @@
         }
       },
       "Hypesoft.Domain/1.0.0": {
+        "dependencies": {
+          "MongoDB.Driver": "3.4.2"
+        },
         "runtime": {
           "Hypesoft.Domain.dll": {
             "assemblyVersion": "1.0.0.0",

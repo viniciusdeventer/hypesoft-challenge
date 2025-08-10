@@ -283,6 +283,9 @@
       "Hypesoft.Domain/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v9.0",
+        "dependencies": {
+          "MongoDB.Driver": "3.4.2"
+        },
         "compile": {
           "bin/placeholder/Hypesoft.Domain.dll": {}
         },

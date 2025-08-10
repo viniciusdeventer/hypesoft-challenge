@@ -16,13 +16,13 @@ public class ProductRepository : IProductRepository
     public async Task AddAsync(Product product) =>
         await _collection.InsertOneAsync(product);
 
-    public async Task DeleteAsync(Guid id) =>
+    public async Task DeleteAsync(string id) =>
         await _collection.DeleteOneAsync(p => p.IdProduct == id);
 
     public async Task<List<Product>> GetAllAsync() =>
         await _collection.Find(_ => true).ToListAsync();
 
-    public async Task<Product?> GetByIdAsync(Guid id) =>
+    public async Task<Product?> GetByIdAsync(string id) =>
         await _collection.Find(p => p.IdProduct == id).FirstOrDefaultAsync();
 
     public async Task<Product?> GetByNameAsync(string name) =>

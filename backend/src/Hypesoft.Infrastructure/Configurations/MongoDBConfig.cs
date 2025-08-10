@@ -2,20 +2,26 @@
 using Microsoft.Extensions.Configuration;
 using MongoDB.Driver;
 
-public static class MongoDbConfig
+namespace Hypesoft.Infrastructure.Configurations
 {
-    public static IServiceCollection AddMongoDb(this IServiceCollection services, IConfiguration config)
+    public static class MongoDbConfig
     {
-        var connectionString = config.GetConnectionString("MongoDb");
-        var databaseName = config["MongoDb:DatabaseName"];
-
-        services.AddSingleton<IMongoClient>(_ => new MongoClient(connectionString));
-        services.AddSingleton(serviceProvider =>
+        public static IServiceCollection AddMongoDb(this IServiceCollection services, IConfiguration config)
         {
-            var client = serviceProvider.GetRequiredService<IMongoClient>();
-            return client.GetDatabase(databaseName);
-        });
+            var connectionString = Environment.GetEnvironmentVariable("MONGO_CONNECTION_STRING")
+                                   ?? config.GetConnectionString("MongoDb");
 
-        return services;
+            var databaseName = Environment.GetEnvironmentVariable("MONGO_DBNAME")
+                               ?? config["MongoDb:DatabaseName"];
+
+            services.AddSingleton<IMongoClient>(_ => new MongoClient(connectionString));
+            services.AddSingleton(serviceProvider =>
+            {
+                var client = serviceProvider.GetRequiredService<IMongoClient>();
+                return client.GetDatabase(databaseName);
+            });
+
+            return services;
+        }
     }
 }
