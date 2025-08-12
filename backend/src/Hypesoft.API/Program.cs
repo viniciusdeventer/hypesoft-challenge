@@ -24,6 +24,18 @@ builder.Services.AddMongoDb(builder.Configuration);
 builder.Services.AddScoped<IProductRepository, ProductRepository>();
 builder.Services.AddScoped<ICategoryRepository, CategoryRepository>();
 
+// CORS
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowReactApp",
+        policy =>
+        {
+            policy.WithOrigins("http://localhost:5173") // URL do frontend
+                  .AllowAnyHeader()
+                  .AllowAnyMethod();
+        });
+});
+
 var app = builder.Build();
 
 // Swagger apenas em Dev
@@ -36,6 +48,8 @@ if (app.Environment.IsDevelopment())
         c.RoutePrefix = string.Empty;
     });
 }
+
+app.UseCors("AllowReactApp"); // Ativa o CORS antes dos controllers
 
 app.MapControllers();
 app.Urls.Add("http://0.0.0.0:5000");

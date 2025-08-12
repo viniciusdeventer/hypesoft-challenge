@@ -35,14 +35,16 @@ export function Sidebar() {
                   <li key={item.label}>
                     <Link
                       to={item.path}
-                      className={`flex items-center justify-between p-2 rounded-lg transition ${
-                        isActive ? "bg-indigo-50 text-indigo-600" : "text-gray-600 hover:bg-gray-100"
+                      className={`group flex items-center justify-between p-2 rounded-lg  ${
+                        isActive
+                          ? "bg-indigo-50 text-indigo-600"
+                          : "text-gray-600 hover:bg-gray-100 hover:text-indigo-600"
                       }`}
                     >
                       <div className="flex items-center">
                         <item.icon
                           className={`w-5 h-5 mr-3 ${
-                            isActive ? "text-indigo-600" : "text-gray-400"
+                            isActive ? "text-indigo-600" : "text-gray-400 group-hover:text-indigo-600"
                           }`}
                         />
                         <span className="text-sm font-medium">{item.label}</span>

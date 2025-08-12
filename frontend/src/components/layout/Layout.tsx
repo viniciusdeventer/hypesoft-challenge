@@ -7,7 +7,10 @@ export function Layout({ children }: { children: ReactNode }) {
     <div className="flex h-screen bg-gray-100">
       <Sidebar />
       <div className="flex flex-col flex-1">
-        <Navbar />
+        <div className="sticky top-0 z-10">
+          <Navbar />
+        </div>
+
         <main className="flex-1 p-4 overflow-y-auto">{children}</main>
       </div>
     </div>
