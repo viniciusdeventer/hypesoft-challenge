@@ -49,7 +49,7 @@ export function Navbar() {
               Configurações
             </button>
             <div className="my-1" />
-            <button className="w-full text-left px-4 py-2 text-sm bg-white text-red-600 border hover:bg-indigo-100 border-transparent hover:border-transparent outline-none focus:outline-none focus:ring-0">
+            <button className="w-full text-left px-4 py-2 text-sm bg-white text-red-600 border hover:bg-red-100 border-transparent hover:border-transparent outline-none focus:outline-none focus:ring-0">
               Sair
             </button>
           </div>

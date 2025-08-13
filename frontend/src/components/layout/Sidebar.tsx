@@ -1,4 +1,4 @@
-import { Home, Package } from "lucide-react";
+import { Home, Package, BookOpen } from "lucide-react";
 import { Link, useLocation } from "react-router-dom";
 import HypesoftLogo from "../../assets/Hypesoft.png"; 
 
@@ -16,7 +16,7 @@ export function Sidebar() {
       title: "V E N D A S",
       items: [
         { label: "Products", icon: Package, path: "/products", badge: 3 },
-        { label: "Categories", icon: Package, path: "/categories", badge: null },
+        { label: "Categories", icon: BookOpen, path: "/categories", badge: null },
       ],
     },    
   ];
